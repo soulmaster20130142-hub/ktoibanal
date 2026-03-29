@@ -36,9 +36,10 @@ const GallerySection = () => {
           <Dialog key={i}>
             <DialogTrigger asChild>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.8, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ y: -10 }}
                 className="group relative break-inside-avoid overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500 bg-muted"
                 onClick={() => setSelectedImg(img)}
@@ -46,6 +47,9 @@ const GallerySection = () => {
                 <img
                   src={img.src}
                   alt={img.alt}
+                  width={800}
+                  height={600}
+                  decoding="async"
                   className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-110 dark:brightness-[0.9] dark:contrast-[1.05] group-hover:brightness-100 dark:group-hover:brightness-110"
                   loading="lazy"
                 />

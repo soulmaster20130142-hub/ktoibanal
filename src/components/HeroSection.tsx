@@ -1,18 +1,22 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, useReducedMotion } from "framer-motion";
 import { Mountain, ShieldCheck } from "lucide-react";
 import { useRef } from "react";
 import heroImage from "@/assets/hero-resort.jpg";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  // Reduced parallax range (15% instead of 30%) for smoother mobile performance
+  const rawY = useTransform(scrollYProgress, [0, 1], ["0%", prefersReducedMotion ? "0%" : "15%"]);
+  // Spring dampens sudden scroll jumps — especially important on mobile
+  const y = useSpring(rawY, { stiffness: 60, damping: 20, mass: 0.5 });
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -26,7 +30,7 @@ const HeroSection = () => {
     >
       {/* Background with Parallax & Ken Burns */}
       <motion.div
-        style={{ y, scale }}
+        style={{ y, scale, willChange: "transform", translateZ: 0 }}
         className="absolute inset-0 z-0"
       >
         <motion.img

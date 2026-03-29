@@ -72,6 +72,9 @@ const Footer = () => {
           <p className="text-xs font-body text-muted-foreground">
             &copy; {year} Koti Banal Villa Resort. All rights reserved.
           </p>
+          <p className="text-xs font-body text-muted-foreground/50">
+            Website made by Aarush Gupta
+          </p>
         </div>
       </div>
     </footer>

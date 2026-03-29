@@ -7,7 +7,6 @@ import GallerySection from "@/components/GallerySection";
 import QuoteDivider from "@/components/QuoteDivider";
 import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
-import Section from "@/components/Section";
 
 const Index = () => {
   return (

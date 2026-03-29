@@ -82,13 +82,10 @@ const HeritageSection = () => {
                 className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 brightness-50"
               />
               {/* Main Focused Image */}
-              <motion.img
+              <img
                 src={slides[current].image}
                 alt={slides[current].title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative w-full h-full object-contain transition-all duration-1000 dark:brightness-[0.9] dark:contrast-[1.05] group-hover:scale-[1.02]"
+                className="relative w-full h-full object-contain dark:brightness-[0.9] dark:contrast-[1.05] group-hover:scale-[1.02] transition-transform duration-1000"
               />
             </motion.div>
           </AnimatePresence>

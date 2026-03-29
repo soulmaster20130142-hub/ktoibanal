@@ -5,9 +5,10 @@ import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 const ScrollEnhancements = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
+    stiffness: 50,
+    damping: 25,
+    restDelta: 0.0005,
+    mass: 0.3,
   });
 
   const [showTop, setShowTop] = useState(false);
